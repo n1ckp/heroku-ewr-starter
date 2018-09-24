@@ -1,0 +1,50 @@
+@import 'base';
+
+#container {
+  .header {
+    padding: 48px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $colour-brand-blue-light;
+    h1 {
+      margin-bottom: 24px;
+    }
+    .icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        width: 48px;
+        height: 48px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        margin-right: 8px;
+        display: block;
+        &:last-child {
+          margin-right: 0;
+        }
+        &.heroku {
+          background-image: url(img/heroku.svg);
+        }
+        &.react {
+          background-image: url(img/react.svg);
+        }
+        &.webpack {
+          background-image: url(img/webpack.svg);
+        }
+        &.express {
+          background-image: url(img/nodejs.svg);
+        }
+      }
+    }
+  }
+  .inner {
+    padding: 24px 0;
+    text-align: center;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+}
