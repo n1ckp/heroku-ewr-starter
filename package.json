@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Starter project for Heroku App built with Webpack, React, and Express",
   "main": "index.js",
+  "repository": "https://github.com/n1ckp/heroku-ewr-starter",
   "scripts": {
     "start": "node index.js",
     "heroku-postbuild": "cd frontend && npm i && npm run build"
