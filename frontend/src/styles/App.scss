@@ -15,28 +15,22 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      span {
+      .icon {
         width: 48px;
         height: 48px;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
         margin-right: 8px;
         display: block;
         &:last-child {
           margin-right: 0;
         }
-        &.heroku {
-          background-image: url(img/heroku.svg);
-        }
         &.react {
-          background-image: url(img/react.svg);
+          background-image: url(/src/img/react.svg);
         }
         &.webpack {
-          background-image: url(img/webpack.svg);
+          background-image: url(/src/img/webpack.svg);
         }
         &.express {
-          background-image: url(img/nodejs.svg);
+          background-image: url(/src/img/nodejs.svg);
         }
       }
     }

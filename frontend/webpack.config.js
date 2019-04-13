@@ -15,14 +15,14 @@ let buildConfig = {
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.NamedModulesPlugin(),
-    new CleanWebpackPlugin(['build']),
+    new CleanWebpackPlugin(),
   ],
   resolve: {
     extensions: ['*', '.js'],
     alias: {
-      styles: path.resolve(__dirname, "src", "styles"),
-      img: path.resolve(__dirname, "src", "img"),
-      components: path.resolve(__dirname, "src", "components"),
+      styles: path.resolve(__dirname, 'src', 'styles'),
+      img: path.resolve(__dirname, 'src', 'img'),
+      components: path.resolve(__dirname, 'src', 'components'),
     }
   },
   output: {
@@ -46,14 +46,19 @@ let buildConfig = {
         include: path.resolve(__dirname, 'src', 'styles'),
         use: [
           'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-          'sass-loader?sourceMap',
+          {loader: 'css-loader', options: {modules: true}},
+          'sass-loader',
         ]
       },
       {
-        test: /\.(png|gif|jpg|svg|ttf|woff|eot)/,
+        test: /\.svg/,
+        include: path.resolve(__dirname, 'src'),
+        loader: 'react-svg-loader',
+      },
+      {
+        test: /\.(png|gif|jpg|ttf|woff|eot)/,
         include: path.resolve(__dirname, 'src', 'img'),
-        loader: 'file-loader',
+        loader: 'url-loader',
       }
     ]
   }
