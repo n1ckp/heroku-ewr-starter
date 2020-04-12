@@ -6,7 +6,8 @@
   "repository": "https://github.com/n1ckp/heroku-ewr-starter",
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cd frontend && npm i && npm run build"
+    "heroku-prebuild": "cd frontend && npm i",
+    "heroku-postbuild": "cd frontend && npm run build"
   },
   "keywords": [],
   "author": "Nick Phillips",
