@@ -5,18 +5,28 @@ const webpack = require('webpack')
 const APP_ROOT_PATH = path.resolve(__dirname, 'src', 'index.js')
 const BUILD_PATH = path.resolve(__dirname, 'build')
 
-let buildConfig = {
+const IS_DEV_MODE = process.env.NODE_ENV !== 'production'
+
+const plugins = [
+  new webpack.NoEmitOnErrorsPlugin(),
+  new webpack.NamedModulesPlugin(),
+  new CleanWebpackPlugin(),
+]
+
+if (IS_DEV_MODE) {
+  plugins.push(new webpack.HotModuleReplacementPlugin())
+}
+
+module.exports = {
   entry: {
     app: [
       'babel-polyfill',
       APP_ROOT_PATH,
     ],
   },
-  plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new CleanWebpackPlugin(),
-  ],
+  mode: IS_DEV_MODE ? 'development' : 'production',
+  devtool: IS_DEV_MODE ? 'source-map' : undefined,
+  plugins,
   resolve: {
     extensions: ['*', '.js'],
     alias: {
@@ -46,8 +56,19 @@ let buildConfig = {
         include: path.resolve(__dirname, 'src', 'styles'),
         use: [
           'style-loader',
-          {loader: 'css-loader', options: {modules: true}},
-          'sass-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: IS_DEV_MODE,
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: IS_DEV_MODE,
+            }
+          },
         ]
       },
       {
@@ -61,24 +82,13 @@ let buildConfig = {
         loader: 'url-loader',
       }
     ]
-  }
-}
-
-if (process.env.NODE_ENV === 'production') {
-  buildConfig.mode = 'production'
-}
-else if (process.env.NODE_ENV === 'development') {
-  buildConfig.mode = 'development'
-  buildConfig.devtool = 'source-map'
-  buildConfig.devServer = {
+  },
+  devServer: IS_DEV_MODE ? {
     contentBase: '/build/',
     hot: true,
     port: 3000,
     proxy: {
       '*': 'http://localhost:5000',
     },
-  }
-  buildConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+  } : undefined,
 }
-
-module.exports = buildConfig
