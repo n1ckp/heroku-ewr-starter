@@ -2,7 +2,7 @@ const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack')
 
-const APP_ROOT_PATH = path.resolve(__dirname, 'src', 'index.js')
+const APP_ROOT_PATH = path.resolve(__dirname, 'src', 'index.tsx')
 const BUILD_PATH = path.resolve(__dirname, 'build')
 
 const IS_DEV_MODE = process.env.NODE_ENV !== 'production'
@@ -28,7 +28,7 @@ module.exports = {
   devtool: IS_DEV_MODE ? 'source-map' : undefined,
   plugins,
   resolve: {
-    extensions: ['*', '.js'],
+    extensions: ['*', '.js', '.ts', '.tsx'],
     alias: {
       styles: path.resolve(__dirname, 'src', 'styles'),
       img: path.resolve(__dirname, 'src', 'img'),
@@ -42,13 +42,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(t|j)sx?$/,
         include: path.resolve(__dirname, 'src'),
         use:  {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/env', '@babel/preset-react'],
-          },
         }
       },
       {
