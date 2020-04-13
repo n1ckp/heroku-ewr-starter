@@ -1,11 +1,9 @@
-node_modules: package.json
+server: node_modules
 	npm i
+	npm run dev
 
-frontend/node_modules: frontend/package.json
-	npm i --prefix frontend
+deps-client:
+	npm i --prefix client
 
-be: node_modules
-	npm start
-
-fe: frontend/node_modules
-	npm start --prefix frontend
+client: deps-client
+	npm start --prefix client

@@ -2,19 +2,25 @@
   "name": "heroku-express-webpack-react-starter",
   "version": "1.0.0",
   "description": "Starter project for Heroku App built with Webpack, React, and Express",
-  "main": "index.js",
+  "main": "index.ts",
   "repository": "https://github.com/n1ckp/heroku-ewr-starter",
   "scripts": {
-    "start": "node index.js",
-    "heroku-postbuild": "cd frontend && npm i && npm run build"
+    "dev": "tsc-watch --onSuccess \"node build/index.js\"",
+    "heroku-postbuild": "cd client && npm i && npm run build",
+    "start": "tsc && node build/index.js"
   },
   "keywords": [],
   "author": "Nick Phillips",
   "license": "ISC",
   "dependencies": {
-    "express": "4.16.3"
+    "@types/express": "^4.17.6",
+    "express": "4.16.3",
+    "typescript": "^3.8.3"
   },
   "engines": {
     "node": "8.9.4"
+  },
+  "devDependencies": {
+    "tsc-watch": "^4.2.3"
   }
 }

@@ -2,8 +2,8 @@
 
 To run locally:
 
-1. [backend terminal] run `npm i && npm start`
-2. [frontend teriminal] `cd frontend && npm i && npm start`
+1. [server terminal] run `npm i && npm run dev`
+2. [client teriminal] `cd client && npm i && npm start`
 3. Go to localhost:3000 in your browser
 
 To run on Heroku:

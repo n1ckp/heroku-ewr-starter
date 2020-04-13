@@ -1,16 +1,16 @@
-const express = require('express')
-const path = require('path')
+import express = require('express');
+import path = require('path');
 
-const app = express()
+const app: express.Application = express()
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'frontend/build')))
-app.use(express.static(path.join(__dirname, 'frontend/public')))
+app.use(express.static('./client/build'))
+app.use(express.static('./client/public'))
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/frontend/public/index.html'))
+  res.sendFile('./client/public/index.html')
 })
 
 const port = process.env.PORT || 5000
