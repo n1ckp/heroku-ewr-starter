@@ -2,6 +2,8 @@
 
 This codebase is a skeleton app, intended for anyone who wants to avoid boilerplate code setup when launching a modern Node.js React app on Heroku.
 
+Working, deployed example: https://nameless-shore-89737.herokuapp.com/
+
 Main technologies used are as follows:
 - Express
 - Webpack
