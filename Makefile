@@ -1,5 +1,7 @@
-server: node_modules
+deps-server:
 	npm i
+
+server: deps-server
 	npm run dev
 
 deps-client:
