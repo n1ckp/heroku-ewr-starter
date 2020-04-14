@@ -17,6 +17,8 @@ if (IS_DEV_MODE) {
   plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
+const SRC_PATH = path.resolve(__dirname, 'src')
+
 module.exports = {
   entry: {
     app: [
@@ -30,9 +32,9 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.ts', '.tsx'],
     alias: {
-      styles: path.resolve(__dirname, 'src', 'styles'),
-      img: path.resolve(__dirname, 'src', 'img'),
-      components: path.resolve(__dirname, 'src', 'components'),
+      styles: path.resolve(SRC_PATH, 'styles'),
+      img: path.resolve(SRC_PATH, 'img'),
+      components: path.resolve(SRC_PATH, 'components'),
     }
   },
   output: {
@@ -43,14 +45,14 @@ module.exports = {
     rules: [
       {
         test: /\.(t|j)sx?$/,
-        include: path.resolve(__dirname, 'src'),
+        include: SRC_PATH,
         use:  {
           loader: 'babel-loader',
         }
       },
       {
         test: /\.scss$/,
-        include: path.resolve(__dirname, 'src', 'styles'),
+        include: SRC_PATH,
         use: [
           'style-loader',
           {
@@ -64,6 +66,11 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: IS_DEV_MODE,
+              sassOptions: {
+                includePaths: [
+                  path.join(SRC_PATH, 'styles'),
+                ],
+              },
             }
           },
         ]

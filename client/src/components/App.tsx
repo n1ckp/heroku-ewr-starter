@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from 'styles/App.scss'
+import styles from './App.scss'
 
 import HerokuIcon from 'img/heroku.svg'
 import ExpressIcon from 'img/nodejs.svg'
