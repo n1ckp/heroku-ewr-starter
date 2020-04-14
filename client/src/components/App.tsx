@@ -25,6 +25,7 @@ const App: React.FunctionComponent = () => (
     </div>
     <div className={styles.footer}>
       <p>Created and maintained by <a href="https://n1ck.dev/" target="_blank">Nick Phillips</a></p>
+      <p>GitHub repo: <a href="https://github.com/n1ckp/heroku-ewr-starter" target="_blank">https://github.com/n1ckp/heroku-ewr-starter</a></p>
     </div>
   </div>
 )
